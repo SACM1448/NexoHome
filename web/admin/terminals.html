@@ -1,0 +1,6 @@
+<section class="panel pairing-panel" aria-labelledby="pairing-title">
+  <div><p class="eyebrow">NUEVO DISPOSITIVO</p><h2 id="pairing-title">Vincular un terminal</h2><p class="muted">Genera un código de uso único. Caduca en cinco minutos.</p></div>
+  <button id="generate" class="button-primary" type="button">+ Generar código</button>
+  <div class="pairing-result"><p id="pairing-code" class="secret" role="status" data-private></p><div class="button-row"><button id="code-status" type="button" hidden>Consultar vinculación</button><button id="code-revoke" type="button" hidden>Revocar código</button></div></div>
+</section>
+<section aria-labelledby="terminals-title"><div class="section-heading"><div><p class="eyebrow">DISPOSITIVOS</p><h2 id="terminals-title">Terminales registrados</h2></div><button id="refresh-page" type="button">Actualizar terminales</button></div><div id="terminals" data-private></div><details class="help"><summary>Acerca de los permisos y estados</summary><p>Los nuevos terminales solo pueden consultar su estado. El permiso de conversación queda reservado para una fase posterior. Una credencial vigente no confirma que el dispositivo esté en línea.</p></details></section>

@@ -1,0 +1,27 @@
+{
+    admin off
+    auto_https disable_redirects
+    skip_install_trust
+}
+
+https://{$NEXO_LAN_HOST:nexo.home.arpa} {
+    tls internal
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        X-Content-Type-Options nosniff
+        Referrer-Policy no-referrer
+        X-Frame-Options DENY
+        Permissions-Policy "camera=(), geolocation=()"
+        -Server
+    }
+    reverse_proxy nexo:8000 {
+        transport http {
+            dial_timeout 3s
+            response_header_timeout 10s
+        }
+    }
+}
+
+http://127.0.0.1:8080 {
+    respond /health "ok" 200
+}

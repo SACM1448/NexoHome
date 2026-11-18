@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b24">
+  <title>{{LABEL}} · NEXO Home</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/admin.css">
+  <script src="/static/js/terminals-admin.js" defer></script>
+</head>
+<body class="admin" data-page="{{PAGE}}">
+  <a class="skip-link" href="#page-content">Ir al contenido</a>
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <a class="brand-link" href="/"><span class="brand-symbol" aria-hidden="true">N</span><span>NEXO <strong>Home</strong><small>Centro de control</small></span></a>
+      <p class="nav-label">ADMINISTRACIÓN</p>
+      <nav class="admin-nav" aria-label="Administración">
+        <a href="/admin/dashboard" data-nav="dashboard"><span aria-hidden="true">◈</span>Resumen</a>
+        <a href="/admin/terminals" data-nav="terminals"><span aria-hidden="true">▣</span>Terminales</a>
+        <a href="/admin/resources" data-nav="resources"><span aria-hidden="true">▥</span>Recursos</a>
+        <a href="/admin/audit" data-nav="audit"><span aria-hidden="true">≡</span>Auditoría</a>
+        <a href="/admin/updates" data-nav="updates"><span aria-hidden="true">↻</span>Actualizaciones</a>
+      </nav>
+      <div class="sidebar-bottom"><span class="status-dot" aria-hidden="true"></span>Tu hogar conectado<span>Administración local</span></div>
+    </aside>
+    <main class="admin-main" id="page-content">
+      <header class="topbar"><span>NEXO HOME <span class="breadcrumb">/ {{LABEL}}</span></span><button id="logout" class="button-quiet" type="button" hidden>Cerrar sesión</button></header>
+      <section class="admin-banner" aria-labelledby="page-title">
+        <div><p class="eyebrow">UN HOGAR. TODO CONECTADO.</p><h1 id="page-title">{{TITLE}}</h1><p>{{DESCRIPTION}}</p></div>
+        <div class="banner-house" aria-hidden="true"><div class="house-roof"></div><div class="house-body"><span></span><span></span><span></span><span></span></div><i></i></div>
+      </section>
+      <form id="login-form" class="login-card">
+        <div><p class="eyebrow">ACCESO SEGURO</p><h2>Bienvenido a casa</h2><p class="muted">Inicia sesión con tu cuenta administrativa.</p></div>
+        <label>Usuario<input name="username" required autocomplete="username" maxlength="64"></label>
+        <label>Contraseña<input name="password" type="password" required autocomplete="current-password" maxlength="128"></label>
+        <button class="button-primary">Iniciar sesión</button>
+      </form>
+      <p id="message" class="feedback" role="status" aria-live="polite"></p>
+      <div id="management" hidden>{{CONTENT}}</div>
+      <noscript><p class="notice">Activa JavaScript para acceder a los datos administrativos.</p></noscript>
+      <footer class="admin-footer"><span>NEXO Home · Núcleo doméstico</span><span>Control local · Sesión protegida</span></footer>
+    </main>
+  </div>
+</body>
+</html>

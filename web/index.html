@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b24">
+  <title>NEXO Home</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><span class="brand">N<span aria-hidden="true">✳</span></span><span>NEXO Home</span><span class="phase">FASE 01</span></header>
+    <section class="intro">
+      <p class="eyebrow">TU HOGAR, CONECTADO CON SENTIDO</p>
+      <h1>Un nuevo comienzo<br>para tu hogar.</h1>
+      <p class="description">NEXO Home está en su primera fase de implementación. La base del sistema ya tiene un lugar aquí.</p>
+    </section>
+    <section class="status-card" aria-labelledby="status-title">
+      <div><p class="eyebrow">ESTADO DEL SERVICIO</p><h2 id="status-title">El núcleo de NEXO</h2></div>
+      <p id="service-status" role="status" aria-live="polite" data-state="pending">Comprobando conexión…</p>
+      <button id="refresh" type="button">Comprobar estado</button>
+      <noscript>Activa JavaScript para consultar el estado del servicio.</noscript>
+    </section>
+    <nav><a href="/terminal">Vincular terminal</a> <a href="/admin/dashboard">Panel administrativo</a></nav>
+    <footer><span>Núcleo · Entregable 1.4</span><span>Construido paso a paso.</span></footer>
+  </main>
+</body>
+</html>

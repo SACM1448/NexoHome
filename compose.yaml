@@ -1,0 +1,30 @@
+name: nexo-home
+services:
+  nexo:
+    build: .
+    image: nexo-home:local
+    ports:
+      - "127.0.0.1:${NEXO_PORT:-8000}:8000"
+    restart: unless-stopped
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 64
+    mem_limit: 256m
+    environment:
+      NEXO_DATA_DIR: /data
+      NEXO_ENV: ${NEXO_ENV:-development}
+      NEXO_ORIGIN: ${NEXO_ORIGIN:-http://localhost:8000}
+      NEXO_CONTEXT_TTL: ${NEXO_CONTEXT_TTL:-900}
+      NEXO_METRICS_INTERVAL: ${NEXO_METRICS_INTERVAL:-30}
+    volumes:
+      - nexo_data:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"
+volumes:
+  nexo_data:

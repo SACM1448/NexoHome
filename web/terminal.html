@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#101b24">
+  <title>Terminal · NEXO Home</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="/static/css/terminal.css">
+  <script src="/static/js/terminal.js" defer></script>
+</head>
+<body class="terminal">
+<a class="skip-link" href="#text">Ir al mensaje</a>
+<main>
+  <header><a class="wordmark" href="/" aria-label="NEXO Home, inicio"><span class="brand">n<span>↗</span></span> NEXO<span class="home-label">HOME</span></a><span class="terminal-tag">TU ESPACIO · TU ASISTENTE</span></header>
+  <div class="terminal-layout">
+    <section class="companion" aria-labelledby="robot-title">
+      <p class="eyebrow">UN PUNTO DE CONEXIÓN</p>
+      <h1 id="robot-title">Hola, soy NEXO<span>.</span></h1>
+      <p class="intro-copy">Aquí para conectar contigo y tu hogar.</p>
+      <div id="robot" class="robot-stage" data-state="unpaired" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="robot-head"><div class="robot-screen"><div class="eyes"><i class="eye"></i><i class="eye"></i></div><div class="mouth"></div><div class="cheek cheek-left"></div><div class="cheek cheek-right"></div></div><div class="robot-light"></div></div>
+        <div class="robot-shadow"></div>
+      </div>
+      <p id="robot-status" class="robot-status" role="status" aria-live="polite">Sin vincular</p>
+      <p class="companion-note">Una conversación, en este momento.<br>Tu historial visual desaparece al recargar.</p>
+    </section>
+    <section class="conversation" aria-labelledby="chat-title">
+      <div class="conversation-heading"><div><p class="eyebrow">ESTE TERMINAL</p><h2 id="chat-title">Conversemos</h2></div><a class="link-status" href="#pairing">Vinculación ↗</a></div>
+      <div class="conversation-body">
+        <div id="welcome" class="welcome"><span class="welcome-mark" aria-hidden="true">✦</span><h3>¿Comenzamos?</h3><p>Al vincular tu terminal, puedes escribir <strong>hola</strong>, <strong>estado</strong> o <strong>ayuda</strong>.</p><p class="muted">Interacción local por texto.<br>La voz y las integraciones llegarán después.</p></div>
+        <ol id="history" aria-label="Conversación temporal"></ol>
+      </div>
+      <p id="processing" role="status" aria-live="polite"></p>
+      <p id="reply" class="latest-result" aria-live="polite"></p>
+      <form id="interact-form" class="composer">
+        <label class="sr-only" for="text">Mensaje para NEXO</label>
+        <input id="text" name="text" required maxlength="2000" autocomplete="off" placeholder="Escribe a NEXO…" aria-describedby="input-note">
+        <button type="submit" aria-label="Enviar mensaje">Enviar <span aria-hidden="true">↗</span></button>
+      </form>
+      <p id="input-note" class="input-note">Solo texto · Sin grabación de audio · Hasta 2.000 caracteres</p>
+    </section>
+  </div>
+  <details id="pairing" class="pairing" open>
+    <summary>Vinculación del terminal <span id="pairing-status">Sin vincular</span></summary>
+    <div class="pairing-content">
+      <p>Solicita al administrador un código de un solo uso. Caduca en cinco minutos. La credencial permanece en esta pestaña hasta cerrarla; evita equipos compartidos.</p>
+      <form id="pair-form">
+        <label for="terminal-name">Nombre del terminal<input id="terminal-name" name="name" required maxlength="80" autocomplete="off" placeholder="Por ejemplo, sala"></label>
+        <label for="pair-code">Código de vinculación<input id="pair-code" name="code" type="password" required maxlength="96" autocomplete="off" spellcheck="false"></label>
+        <button type="submit">Vincular</button>
+      </form>
+      <p id="message" role="status" aria-live="polite"></p>
+      <pre id="identity"></pre>
+      <div class="pairing-actions"><button id="identity-refresh" type="button">Consultar identidad</button><button id="status-refresh" type="button">Consultar estado autorizado</button><button id="forget" type="button">Olvidar credencial de esta pestaña</button></div>
+    </div>
+  </details>
+  <footer><span>NEXO HOME <span aria-hidden="true">/</span> Un hogar más conectado.</span><span>Sesión independiente · Conversación temporal</span></footer>
+  <noscript>Activa JavaScript para vincular e interactuar con el terminal.</noscript>
+</main></body></html>

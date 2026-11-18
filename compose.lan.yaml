@@ -1,0 +1,60 @@
+# Configuración independiente: NO combinar con compose.yaml.
+name: nexo-home
+services:
+  nexo:
+    build: .
+    image: nexo-home:local
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 256m
+    environment:
+      NEXO_DATA_DIR: /data
+      NEXO_ENV: production
+      NEXO_ORIGIN: https://${NEXO_LAN_HOST:-nexo.home.arpa}
+      NEXO_CONTEXT_TTL: ${NEXO_CONTEXT_TTL:-900}
+      NEXO_METRICS_INTERVAL: ${NEXO_METRICS_INTERVAL:-30}
+    volumes:
+      - nexo_data:/data
+    networks: [backend]
+    logging:
+      driver: json-file
+      options: {max-size: "5m", max-file: "2"}
+  caddy:
+    image: caddy:2.11.9-alpine@sha256:003a97808e781aa9f7e75cc2f43d34d461099031faf5e20faefb9f61126836f0
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    security_opt: [no-new-privileges:true]
+    pids_limit: 64
+    mem_limit: 128m
+    environment:
+      NEXO_LAN_HOST: ${NEXO_LAN_HOST:-nexo.home.arpa}
+    ports:
+      - "${NEXO_LAN_IP:?Define una IP privada concreta del servidor}:443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [backend, edge]
+    depends_on:
+      nexo: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, wget, -q, --spider, http://127.0.0.1:8080/health]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options: {max-size: "5m", max-file: "2"}
+networks:
+  edge:
+  backend:
+    internal: true
+volumes:
+  nexo_data:
+  caddy_data:
+  caddy_config:
